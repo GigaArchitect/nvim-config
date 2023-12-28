@@ -47,3 +47,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
+
+-- linting in nvim-lint extension
+local lint = require("lint")
+lint.linters_by_ft = {
+  python = {'pydocstyle',}
+}
+
+vim.api.nvim_create_autocmd({"BufWritePost"}, {
+  callback = function()
+      lint.try_lint()
+    end
+})
+

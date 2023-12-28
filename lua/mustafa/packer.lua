@@ -38,7 +38,8 @@ return require('packer').startup(function(use)
     "mfussenegger/nvim-dap-python",
     "dundalek/lazy-lsp.nvim",
     "m4xshen/autoclose.nvim",
-    "VonHeikemen/lsp-zero.nvim"
+    "VonHeikemen/lsp-zero.nvim",
+    "mfussenegger/nvim-lint"
 }
 use {
   "nvim-neo-tree/neo-tree.nvim",
