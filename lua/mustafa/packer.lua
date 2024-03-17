@@ -11,18 +11,16 @@ return require('packer').startup(function(use)
 -- or                            , branch = '0.1.x',
   requires = { {'nvim-lua/plenary.nvim'} }
 }
-  use({ 
-	'rose-pine/neovim', 
-	as = 'rose-pine', 
-  	config = function()
-		  vim.cmd('colorscheme rose-pine')
-  	end
-  })
+use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+}
   use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
   use {
+    "tanvirtin/monokai.nvim",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
@@ -39,7 +37,9 @@ return require('packer').startup(function(use)
     "dundalek/lazy-lsp.nvim",
     "m4xshen/autoclose.nvim",
     "VonHeikemen/lsp-zero.nvim",
-    "mfussenegger/nvim-lint"
+    "mfussenegger/nvim-lint",
+    "nvim-lua/plenary.nvim",
+    "ThePrimeagen/harpoon"
 }
 use {
   "nvim-neo-tree/neo-tree.nvim",
