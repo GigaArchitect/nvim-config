@@ -12,8 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(
-	{ 
-		{ 'akinsho/toggleterm.nvim', version = "*", config = true },
+	{
+		{ 'akinsho/toggleterm.nvim',          version = "*", config = true },
 		{
 			"nvim-telescope/telescope.nvim",
 			tag = "0.1.4",
@@ -77,9 +77,8 @@ require("lazy").setup(
 	}
 )
 require("plugins")
-
+vim.opt.wrap = true
 vim.wo.number = true
---vim.wo.relativenumber = true
 require("autoclose").setup()
 
 
