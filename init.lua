@@ -42,10 +42,7 @@ require("lazy").setup(
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-cmdline" },
-		{ "mfussenegger/nvim-dap" },
 		{ "hrsh7th/vim-vsnip" },
-		{ "jay-babu/mason-nvim-dap.nvim" },
-		{ "mfussenegger/nvim-dap-python" },
 		{ "dundalek/lazy-lsp.nvim" },
 		{ "m4xshen/autoclose.nvim" },
 		{ "VonHeikemen/lsp-zero.nvim" },
@@ -53,7 +50,7 @@ require("lazy").setup(
 		{ "nvim-lua/plenary.nvim" },
 		{ "ThePrimeagen/harpoon" },
 		{ "nvim-neotest/nvim-nio" },
-		{ "rcarriga/nvim-dap-ui" },
+		{ "windwp/nvim-ts-autotag" },
 
 		{
 			"nvim-neo-tree/neo-tree.nvim",
@@ -81,6 +78,8 @@ vim.opt.wrap = true
 vim.wo.number = true
 require("autoclose").setup()
 
+
+vim.cmd('set tabstop=4')
 
 -- Function to check if a file or directory exists in the system
 local function is_executable(path)
