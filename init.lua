@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(
 	{
-		{ 'akinsho/toggleterm.nvim',          version = "*", config = true },
 		{
 			"nvim-telescope/telescope.nvim",
 			tag = "0.1.4",
@@ -48,7 +47,11 @@ require("lazy").setup(
 		{ "VonHeikemen/lsp-zero.nvim" },
 		{ "mfussenegger/nvim-lint" },
 		{ "nvim-lua/plenary.nvim" },
-		{ "ThePrimeagen/harpoon" },
+		{
+			"ThePrimeagen/harpoon",
+			branch = "harpoon2",
+			dependencies = { "nvim-lua/plenary.nvim" }
+		},
 		{ "nvim-neotest/nvim-nio" },
 		{ "windwp/nvim-ts-autotag" },
 
