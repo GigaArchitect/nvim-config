@@ -6,7 +6,7 @@ vim.keymap.set("n", "<C-e>", function()  harpoon.ui:toggle_quick_menu(harpoon:li
 
 -- Harpoon
 vim.keymap.set("n", "<C-a>", function() harpoon:list():add() end)
-vim.keymap.set("n", "<C-d>", function() harpoon:list():remove() end)
+--vim.keymap.set("n", "<C-d>", function() harpoon:list():remove() end)
 
 vim.keymap.set("n", "<M-1>", function() harpoon:list():select(1) end)
 vim.keymap.set("n", "<M-2>", function() harpoon:list():select(2) end)
