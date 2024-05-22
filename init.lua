@@ -64,16 +64,8 @@ require("lazy").setup(
 				"MunifTanjim/nui.nvim",
 				-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 			}
-		},
-
-		{
-			"nvimtools/none-ls.nvim",
-			dependencies = {
-				"williamboman/mason.nvim",
-				"nvimtools/none-ls.nvim",
-				"nvimtools/none-ls-extras.nvim"
-			}
 		}
+
 	}
 )
 require("plugins")
