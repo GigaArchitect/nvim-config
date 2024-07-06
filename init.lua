@@ -11,70 +11,70 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup(
+require("lazy").setup({
 	{
-		{
-			"nvim-telescope/telescope.nvim",
-			tag = "0.1.4",
-			dependencies = { { "nvim-lua/plenary.nvim" } }
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.4",
+		dependencies = { { "nvim-lua/plenary.nvim" } },
+	},
+
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
+	},
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		config = function()
+			require("plugins.tree-sitter")
+		end,
+	},
+
+	-- Other plugins
+	{ "tanvirtin/monokai.nvim" },
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
+	{ "neovim/nvim-lspconfig" },
+	{ "hrsh7th/nvim-cmp" },
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-path" },
+	{ "hrsh7th/cmp-cmdline" },
+	{ "hrsh7th/vim-vsnip" },
+	{ "dundalek/lazy-lsp.nvim" },
+	{ "m4xshen/autoclose.nvim" },
+	{ "VonHeikemen/lsp-zero.nvim" },
+	{ "stevearc/conform.nvim" },
+	{ "zapling/mason-conform.nvim" },
+	{ "mfussenegger/nvim-lint" },
+	{ "ArcaneSpecs/HexEditor.nvim" },
+	{ "jay-babu/mason-null-ls.nvim" },
+	{ "nvim-lua/plenary.nvim" },
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{ "nvim-neotest/nvim-nio" },
+	{ "windwp/nvim-ts-autotag" },
+
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		},
-
-		{
-			"nvim-lualine/lualine.nvim",
-			dependencies = { "nvim-tree/nvim-web-devicons", opt = true }
-		},
-
-		{
-			"nvim-treesitter/nvim-treesitter",
-			config = function()
-				require("plugins.tree-sitter")
-			end,
-		},
-
-		-- Other plugins
-		{ "tanvirtin/monokai.nvim" },
-		{ "williamboman/mason.nvim" },
-		{ "williamboman/mason-lspconfig.nvim" },
-		{ "neovim/nvim-lspconfig" },
-		{ "hrsh7th/nvim-cmp" },
-		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "hrsh7th/cmp-buffer" },
-		{ "hrsh7th/cmp-path" },
-		{ "hrsh7th/cmp-cmdline" },
-		{ "hrsh7th/vim-vsnip" },
-		{ "dundalek/lazy-lsp.nvim" },
-		{ "m4xshen/autoclose.nvim" },
-		{ "VonHeikemen/lsp-zero.nvim" },
-		{ "mfussenegger/nvim-lint" },
-		{ "nvim-lua/plenary.nvim" },
-		{
-			"ThePrimeagen/harpoon",
-			branch = "harpoon2",
-			dependencies = { "nvim-lua/plenary.nvim" }
-		},
-		{ "nvim-neotest/nvim-nio" },
-		{ "windwp/nvim-ts-autotag" },
-
-		{
-			"nvim-neo-tree/neo-tree.nvim",
-			branch = "v3.x",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-				"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-				"MunifTanjim/nui.nvim",
-				-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-			}
-		}
-
-	}
-)
+	},
+})
 require("plugins")
 vim.opt.wrap = true
 vim.wo.number = true
 require("autoclose").setup()
 
-
-vim.cmd('set tabstop=4')
+vim.cmd("set tabstop=4")
 
 -- Function to check if a file or directory exists in the system
 local function is_executable(path)
