@@ -72,6 +72,7 @@ require("lazy").setup({
 require("plugins")
 vim.opt.wrap = true
 vim.wo.number = true
+vim.wo.relativenumber = true
 require("autoclose").setup()
 
 vim.cmd("set tabstop=4")
