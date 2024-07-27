@@ -29,9 +29,29 @@ require("lazy").setup({
 			require("plugins.tree-sitter")
 		end,
 	},
+	{
+		"kdheepak/lazygit.nvim",
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		-- setting the keybinding for LazyGit with 'keys' is recommended in
+		-- order to load the plugin when the command is run for the first time
+		keys = {
+			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
+	},
 
 	-- Other plugins
 	{ "tanvirtin/monokai.nvim" },
+	{ "rose-pine/neovim", name = "rose-pine" },
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "neovim/nvim-lspconfig" },
@@ -49,6 +69,11 @@ require("lazy").setup({
 	{ "mfussenegger/nvim-lint" },
 	{ "ArcaneSpecs/HexEditor.nvim" },
 	{ "jay-babu/mason-null-ls.nvim" },
+	{ "mfussenegger/nvim-dap" },
+	{ "rcarriga/nvim-dap-ui" },
+	{ "akinsho/toggleterm.nvim", version = "*", config = true },
+	{ "mfussenegger/nvim-dap-python" },
+	{ "jay-babu/mason-nvim-dap.nvim" },
 	{ "nvim-lua/plenary.nvim" },
 	{
 		"ThePrimeagen/harpoon",
