@@ -1,12 +1,12 @@
 local harpoon = require("harpoon")
 harpoon:setup({})
 
-vim.keymap.set("n", "<C-e>", function()
+vim.keymap.set("n", "<M-e>", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end, { desc = "Open harpoon window" })
 
 -- Harpoon
-vim.keymap.set("n", "<C-a>", function()
+vim.keymap.set("n", "<M-a>", function()
 	harpoon:list():add()
 end)
 
