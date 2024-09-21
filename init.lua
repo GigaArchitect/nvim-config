@@ -23,6 +23,23 @@ require("lazy").setup({
 			require("plugins.tree-sitter")
 		end,
 	},
+{
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html",
+    dependencies = {
+        "nvim-telescope/telescope.nvim",
+        "nvim-lua/plenary.nvim", -- required by telescope
+        "MunifTanjim/nui.nvim",
+
+        -- optional
+        "nvim-treesitter/nvim-treesitter",
+        "rcarriga/nvim-notify",
+        "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+        -- configuration goes here
+    },
+},
 	{
 			'vladdoster/remember.nvim',
 			config = function()
@@ -223,6 +240,12 @@ require("lazy").setup({
 	{
 		"nvim-neotest/nvim-nio",
 	},
+		{
+			"iamcco/markdown-preview.nvim",
+			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+			ft = { "markdown" },
+			build = function() vim.fn["mkdp#util#install"]() end,
+		}
 })
 
 -- General settings
@@ -238,3 +261,4 @@ vim.cmd("colorscheme 256-noir")
 vim.api.nvim_set_keymap('n', '<leader>e', ':Lexplore<CR>', { noremap = true, silent = true })
 vim.opt.list = true
 vim.opt.listchars:append("space:·")
+vim.opt.listchars:append("tab:··")

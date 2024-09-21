@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
+vim.api.nvim_create_autocmd({ "UIEnter" }, {
 	callback = function()
 		lint.try_lint()
 	end,
