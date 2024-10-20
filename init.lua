@@ -23,28 +23,28 @@ require("lazy").setup({
 			require("plugins.tree-sitter")
 		end,
 	},
-{
-    "kawre/leetcode.nvim",
-    build = ":TSUpdate html",
-    dependencies = {
-        "nvim-telescope/telescope.nvim",
-        "nvim-lua/plenary.nvim", -- required by telescope
-        "MunifTanjim/nui.nvim",
-
-        -- optional
-        "nvim-treesitter/nvim-treesitter",
-        "rcarriga/nvim-notify",
-        "nvim-tree/nvim-web-devicons",
-    },
-    opts = {
-        -- configuration goes here
-    },
-},
 	{
-			'vladdoster/remember.nvim',
-			config = function()
-					require('remember')
-			end
+		"kawre/leetcode.nvim",
+		build = ":TSUpdate html",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim", -- required by telescope
+			"MunifTanjim/nui.nvim",
+
+			-- optional
+			"nvim-treesitter/nvim-treesitter",
+			"rcarriga/nvim-notify",
+			"nvim-tree/nvim-web-devicons",
+		},
+		opts = {
+			-- configuration goes here
+		},
+	},
+	{
+		'vladdoster/remember.nvim',
+		config = function()
+			require('remember')
+		end
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -60,17 +60,17 @@ require("lazy").setup({
 		"windwp/nvim-ts-autotag",
 		config = function()
 			require('nvim-ts-autotag').setup({
-			  opts = {
-			    -- Defaults
-			    enable_close = true, -- Auto close tags
-			    enable_rename = true, -- Auto rename pairs of tags
-			    enable_close_on_slash = false -- Auto close on trailing </
-			  },
-			  per_filetype = {
-			    ["html"] = {
-			      enable_close = true
-			    }
-			  }
+				opts = {
+					-- Defaults
+					enable_close = true, -- Auto close tags
+					enable_rename = true, -- Auto rename pairs of tags
+					enable_close_on_slash = false -- Auto close on trailing </
+				},
+				per_filetype = {
+					["html"] = {
+						enable_close = true
+					}
+				}
 			})
 		end,
 	},
@@ -191,8 +191,6 @@ require("lazy").setup({
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = true,
-		-- use opts = {} for passing setup options
-		-- this is equalent to setup({}) function
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -240,15 +238,40 @@ require("lazy").setup({
 	{
 		"nvim-neotest/nvim-nio",
 	},
-		{
-			"iamcco/markdown-preview.nvim",
-			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-			ft = { "markdown" },
-			build = function() vim.fn["mkdp#util#install"]() end,
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function() vim.fn["mkdp#util#install"]() end,
+	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		}
+	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			require("rose-pine").setup({
+				styles = {
+					italic = false
+				}
+			})
+		end
+	},
+	{
+		'numToStr/Comment.nvim',
+		opts = {
+		}
+	}
 })
 
--- General settings
 vim.opt.wrap = true
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -256,9 +279,10 @@ vim.wo.signcolumn = "no"
 vim.opt.scrolloff = 10
 vim.opt.autochdir = true
 vim.cmd("set tabstop=4")
-vim.cmd("colorscheme 256-noir")
--- Open Netrw
-vim.api.nvim_set_keymap('n', '<leader>e', ':Lexplore<CR>', { noremap = true, silent = true })
+vim.cmd("colorscheme rose-pine")
+vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle<cr>', { noremap = true, silent = true })
 vim.opt.list = true
 vim.opt.listchars:append("space:·")
 vim.opt.listchars:append("tab:··")
+vim.g.loaded_perl_provider = 0
+vim.o.autochdir = false
