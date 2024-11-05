@@ -281,8 +281,8 @@ vim.opt.autochdir = true
 vim.cmd("set tabstop=4")
 vim.cmd("colorscheme rose-pine")
 vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle<cr>', { noremap = true, silent = true })
-vim.opt.list = true
-vim.opt.listchars:append("space:·")
-vim.opt.listchars:append("tab:··")
+--vim.opt.list = true
+-- vim.opt.listchars:append("space:·")
+-- vim.opt.listchars:append("tab:··")
 vim.g.loaded_perl_provider = 0
 vim.o.autochdir = false
