@@ -4,9 +4,18 @@ require("conform").setup({
 		python = { "isort", "black" },
 		javascript = { "prettierd", "prettier" },
 	},
+	format_on_save = {
+		-- These options will be passed to conform.format()
+		timeout_ms = 5500,
+		lsp_format = "fallback",
+	},
 })
 
 require("mason-conform").setup()
+-- format from conform not lsp
+vim.keymap.set("n", "<space>tf", function()
+	require("conform").format()
+end, opts)
 
 -- linting in nvim-lint extension
 local lint = require("lint")
