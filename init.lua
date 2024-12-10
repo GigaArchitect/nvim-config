@@ -41,10 +41,13 @@ require("lazy").setup({
 		},
 	},
 	{
-		'vladdoster/remember.nvim',
+		"vladdoster/remember.nvim",
 		config = function()
-			require('remember')
-		end
+			require("remember")
+		end,
+	},
+	{
+		"onsails/lspkind.nvim",
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -54,23 +57,23 @@ require("lazy").setup({
 		opts = {},
 		config = function()
 			require("ibl").setup()
-		end
+		end,
 	},
 	{
 		"windwp/nvim-ts-autotag",
 		config = function()
-			require('nvim-ts-autotag').setup({
+			require("nvim-ts-autotag").setup({
 				opts = {
 					-- Defaults
 					enable_close = true, -- Auto close tags
 					enable_rename = true, -- Auto rename pairs of tags
-					enable_close_on_slash = false -- Auto close on trailing </
+					enable_close_on_slash = false, -- Auto close on trailing </
 				},
 				per_filetype = {
 					["html"] = {
-						enable_close = true
-					}
-				}
+						enable_close = true,
+					},
+				},
 			})
 		end,
 	},
@@ -213,12 +216,12 @@ require("lazy").setup({
 	},
 	{
 		"ArcaneSpecs/HexEditor.nvim",
-		cmd = {
-			"HexAssemble",
-			"HexDump",
-			"HexToggle",
-			"Hexplore",
-		},
+		-- cmd = {
+		-- 	"HexAssemble",
+		-- 	"HexDump",
+		-- 	"HexToggle",
+		-- 	"Hexplore",
+		-- },
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
@@ -242,7 +245,9 @@ require("lazy").setup({
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
-		build = function() vim.fn["mkdp#util#install"]() end,
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -252,26 +257,23 @@ require("lazy").setup({
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-		}
+		},
 	},
 	{
-		"rose-pine/neovim",
-		name = "rose-pine",
+		"navarasu/onedark.nvim",
+		name = "one-dark",
 		config = function()
-			require("rose-pine").setup({
-				styles = {
-					italic = false
-				}
+			require("onedark").setup({
+				style = "deep",
 			})
-		end
+		end,
 	},
 	{
-		'numToStr/Comment.nvim',
-		opts = {
-		}
-	}
+		"numToStr/Comment.nvim",
+		opts = {},
+	},
 })
-
+require("HexEditor").setup()
 vim.opt.wrap = true
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -279,10 +281,8 @@ vim.wo.signcolumn = "no"
 vim.opt.scrolloff = 10
 vim.opt.autochdir = true
 vim.cmd("set tabstop=4")
-vim.cmd("colorscheme rose-pine")
-vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle<cr>', { noremap = true, silent = true })
---vim.opt.list = true
--- vim.opt.listchars:append("space:·")
--- vim.opt.listchars:append("tab:··")
+vim.cmd("colorscheme onedark")
+vim.api.nvim_set_keymap("n", "<leader>e", ":Neotree toggle<cr>", { noremap = true, silent = true })
 vim.g.loaded_perl_provider = 0
 vim.o.autochdir = false
+vim.opt.clipboard = "unnamedplus"
