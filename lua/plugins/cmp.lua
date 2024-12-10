@@ -15,7 +15,7 @@ cmp.setup({
 	window = {
 		completion = {
 			border = "rounded", -- Add rounded border
-			winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+			winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None",
 		},
 		documentation = {
 			border = "rounded", -- Add rounded border
