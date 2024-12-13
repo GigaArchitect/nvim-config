@@ -48,8 +48,8 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		["<M-b>"] = cmp.mapping.scroll_docs(-4),
 		["<M-f>"] = cmp.mapping.scroll_docs(4),
-		["<M-p>"] = cmp.mapping.select_prev_item(cmp_select),
-		["<M-n>"] = cmp.mapping.select_next_item(cmp_select),
+		["<M-k>"] = cmp.mapping.select_prev_item(cmp_select),
+		["<M-j>"] = cmp.mapping.select_next_item(cmp_select),
 		["<M-Space>"] = cmp.mapping.complete(),
 		["<M-q>"] = cmp.mapping.abort(),
 		["<tab>"] = cmp.mapping(function(fallback)
