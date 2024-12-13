@@ -41,6 +41,9 @@ require("lazy").setup({
 		},
 	},
 	{
+		"lambdalisue/vim-suda",
+	},
+	{
 		"vladdoster/remember.nvim",
 		config = function()
 			require("remember")

@@ -2,6 +2,8 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -44,16 +46,18 @@ cmp.setup({
 		}),
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-b>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping(function(fallback)
+		["<M-b>"] = cmp.mapping.scroll_docs(-4),
+		["<M-f>"] = cmp.mapping.scroll_docs(4),
+		["<M-p>"] = cmp.mapping.select_prev_item(cmp_select),
+		["<M-n>"] = cmp.mapping.select_next_item(cmp_select),
+		["<M-Space>"] = cmp.mapping.complete(),
+		["<M-q>"] = cmp.mapping.abort(),
+		["<tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				if cmp.get_selected_entry() then
 					cmp.confirm({ select = false }) -- Confirm only if something is selected
 				else
-					fallback() -- Pass to Neovim if nothing is selected
+					fallback() -- Pass to Neovim if menu is not visible
 				end
 			else
 				fallback() -- Pass to Neovim if menu is not visible
