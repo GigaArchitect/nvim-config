@@ -64,6 +64,7 @@ require("lazy").setup({
 	},
 	{
 		"windwp/nvim-ts-autotag",
+		event = "UIEnter",
 		config = function()
 			require("nvim-ts-autotag").setup({
 				opts = {
@@ -120,7 +121,7 @@ require("lazy").setup({
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		event = "UIEnter",
+		event = "VimEnter",
 		dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
 		config = function()
 			require("plugins.lualine")
@@ -164,6 +165,7 @@ require("lazy").setup({
 	},
 	{
 		"hrsh7th/nvim-cmp",
+		lazy = true,
 		event = "InsertEnter",
 		config = function()
 			require("plugins.cmp")
@@ -210,12 +212,13 @@ require("lazy").setup({
 	{
 		"zapling/mason-conform.nvim",
 		after = "nvim-lint",
-	},
-	{
-		"mfussenegger/nvim-lint",
 		config = function()
 			require("plugins.conform")
 		end,
+	},
+	{
+		"mfussenegger/nvim-lint",
+		event = "UIEnter",
 	},
 	{
 		"ArcaneSpecs/HexEditor.nvim",
@@ -247,10 +250,11 @@ require("lazy").setup({
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
+		build = "cd app && yarn install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
 		end,
+		ft = { "markdown" },
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -267,13 +271,34 @@ require("lazy").setup({
 		name = "one-dark",
 		config = function()
 			require("onedark").setup({
-				style = "deep",
+				style = "darker",
 			})
 		end,
 	},
 	{
 		"numToStr/Comment.nvim",
 		opts = {},
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		event = "InsertEnter",
+		cmd = "Copilot",
+		config = function()
+			require("plugins.copilot")
+		end,
+	},
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "zbirenbaum/copilot.lua" }, -- or zbirenbaum/copilot.lua
+			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		},
+		build = "make tiktoken", -- Only on MacOS or Linux
+		event = "UIEnter",
+		opts = {
+			-- See Configuration section for options
+		},
+		-- See Commands section for default commands if you want to lazy load on them
 	},
 })
 require("HexEditor").setup()
@@ -283,9 +308,15 @@ vim.wo.relativenumber = true
 vim.wo.signcolumn = "no"
 vim.opt.scrolloff = 10
 vim.opt.autochdir = true
+
+vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
+vim.cmd("set shiftwidth=4")
+vim.cmd("set softtabstop=4")
+
 vim.cmd("colorscheme onedark")
 vim.api.nvim_set_keymap("n", "<leader>e", ":Neotree toggle<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<M-h>", ":CopilotChat <cr>", { noremap = true, silent = true })
 vim.g.loaded_perl_provider = 0
 vim.o.autochdir = false
-vim.opt.clipboard = "unnamedplus"
+vim.o.signcolumn = "yes" -- Always show the sign column

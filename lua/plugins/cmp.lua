@@ -26,7 +26,7 @@ cmp.setup({
 	},
 	formatting = {
 		format = lspkind.cmp_format({
-			mode = "symbol", -- show only symbol annotations
+			mode = "symbol_text", -- show only symbol annotations
 			maxwidth = {
 				-- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 				-- can also be a function to dynamically calculate max width such as
@@ -46,13 +46,24 @@ cmp.setup({
 		}),
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<M-b>"] = cmp.mapping.scroll_docs(-4),
-		["<M-f>"] = cmp.mapping.scroll_docs(4),
+		["<M-f>"] = cmp.mapping.scroll_docs(-4),
+		["<M-b>"] = cmp.mapping.scroll_docs(4),
 		["<M-k>"] = cmp.mapping.select_prev_item(cmp_select),
 		["<M-j>"] = cmp.mapping.select_next_item(cmp_select),
 		["<M-Space>"] = cmp.mapping.complete(),
 		["<M-q>"] = cmp.mapping.abort(),
 		["<tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				if cmp.get_selected_entry() then
+					cmp.confirm({ select = false }) -- Confirm only if something is selected
+				else
+					fallback() -- Pass to Neovim if menu is not visible
+				end
+			else
+				fallback() -- Pass to Neovim if menu is not visible
+			end
+		end, { "i", "s" }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<CR>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				if cmp.get_selected_entry() then
 					cmp.confirm({ select = false }) -- Confirm only if something is selected
@@ -70,6 +81,7 @@ cmp.setup({
 		-- { name = 'luasnip' }, -- For luasnip users.
 		-- { name = 'ultisnips' }, -- For ultisnips users.
 		-- { name = 'snippy' }, -- For snippy users.
+		{ name = "path" },
 	}, {
 		{ name = "buffer" },
 	}),

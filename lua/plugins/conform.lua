@@ -1,7 +1,7 @@
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		python = { "isort", "black" },
+		python = { "ruff" },
 		javascript = { "prettierd", "prettier" },
 	},
 	format_on_save = {
@@ -21,16 +21,16 @@ end, opts)
 local lint = require("lint")
 lint.linters_by_ft = {
 	python = {
-		"pylint",
+		"ruff",
 	},
 }
 
---vim.api.nvim_create_autocmd("BufWritePre", {
---	pattern = "*",
---	callback = function(args)
---		require("conform").format({ bufnr = args.buf })
---	end,
---})
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function(args)
+		require("conform").format({ bufnr = args.buf })
+	end,
+})
 -- InsertLeave Won't work here as the linters lint the file on disk saved not the buffer opened'
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	callback = function()
@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "UIEnter" }, {
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
 	callback = function()
 		lint.try_lint()
 	end,
