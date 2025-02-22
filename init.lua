@@ -271,7 +271,7 @@ require("lazy").setup({
 		name = "one-dark",
 		config = function()
 			require("onedark").setup({
-				style = "darker",
+				style = "warmer",
 			})
 		end,
 	},
@@ -280,21 +280,18 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
-		"zbirenbaum/copilot.lua",
+		"github/copilot.vim",
 		event = "InsertEnter",
 		cmd = "Copilot",
-		config = function()
-			require("plugins.copilot")
-		end,
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
-			{ "zbirenbaum/copilot.lua" }, -- or zbirenbaum/copilot.lua
-			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+			{ "nvim-lua/plenary.nvim", branch = "master" },
 		},
-		build = "make tiktoken", -- Only on MacOS or Linux
 		event = "UIEnter",
+		build = "make tiktoken",
 		opts = {
 			-- See Configuration section for options
 		},
@@ -320,3 +317,14 @@ vim.api.nvim_set_keymap("n", "<M-h>", ":CopilotChat <cr>", { noremap = true, sil
 vim.g.loaded_perl_provider = 0
 vim.o.autochdir = false
 vim.o.signcolumn = "yes" -- Always show the sign column
+
+-- Javascript
+-- Set tabs to 2 spaces for JavaScript files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "javascript", "typescript", "typescriptreact", "javascriptreact", "html", "xml", "css", "less", "scss" },
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.expandtab = true
+	end,
+})
